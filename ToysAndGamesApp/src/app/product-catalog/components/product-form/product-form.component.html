@@ -1,0 +1,27 @@
+<form id="form-product" (ngSubmit)="save(form.value, form.valid!)" #form="ngForm" novalidate>
+  <div>
+    Name: <input type="text" name="name" [ngModel]="product?.name" required #name="ngModel" />
+    <div *ngIf="name.errors?.['required'] && name.dirty">
+      name is required
+    </div>
+  </div>
+  <div>
+    Description: <input type="text" name="description" [ngModel]="product?.description" />
+  </div>
+  <div>
+    Company: <input type="text" name="company" [ngModel]="product?.company" required />
+  </div>
+  <div>
+    Age Restriction: <input type="number" name="ageRestriction" [ngModel]="product?.ageRestriction" min="1" max="10" />
+  </div>
+  <div>
+    Price: <input type="number" name="price" [ngModel]="product?.price" required />
+  </div>
+
+  <input  type="file"
+  (change)="onChange($event)">
+
+  <button type="submit" [disabled]="form.invalid">
+    Save
+  </button>
+</form>

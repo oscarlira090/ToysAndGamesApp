@@ -1,32 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 import { Product } from './models/Product';
+import { Response } from './models/Response';
 
 const TOYSANDGAMES_API: string = 'https://localhost:7271/api/Product';
-
+let httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
+};
 @Injectable()
 export class ProductService {
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'text/plain' })
-  };
+ 
 
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Product[]> {
-    /*
-    const products = of([
-      { id: 1, name: 'producto 1', company: 'matel', ageRestriction: 1, price: 200 },
-      { id: 2, name: 'producto 2', company: 'matel', ageRestriction: 1, price: 200 },
-      { id: 3, name: 'producto 2', company: 'matel', ageRestriction: 1, price: 200 }
-    ]);
-    return products;*/
-
+   
     return this.http
       .get<Product[]>(TOYSANDGAMES_API).pipe(catchError(this.handleError));
+  }
+
+  saveProduct(product: Product): Observable<Product> {
+
+    const formData = new FormData();
+    formData.append('Id', product.id == undefined ? "0" : product.id.toString());
+    formData.append('Name', product.name.toString());
+    formData.append('Description', product.description!);
+    formData.append('Company', product.company!);
+    formData.append('AgeRestriction', product.ageRestriction?.toString()!);
+    formData.append('Price', product.price.toString());
+    formData.append('File', product.file == undefined ? "" : product.file);
+
+    console.log(product )
+
+    return this.http
+      .post<Product>(`${TOYSANDGAMES_API}`, formData).pipe(
+        tap((producto: Product) => console.log(`added product w/ id=${producto.id}`)),
+        catchError(this.handleError)
+      );
+  }
+
+  removeProduct(productId: number): Observable<Response> {
+
+    return this.http
+      .delete<Response>(`${TOYSANDGAMES_API}/${productId}`).pipe(catchError(this.handleError));
   }
 
   handleError(error: HttpErrorResponse) {
@@ -38,8 +58,8 @@ export class ProductService {
       // Server-side errors
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    console.log(error);
     window.alert(errorMessage);
-    console.log(error)
     return throwError(errorMessage);
   }
   

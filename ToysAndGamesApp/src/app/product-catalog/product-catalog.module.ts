@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
-//conatiners
-
-import { ProductViewerComponent } from './containers/product-viewer/product-viewer.component';
+import { FormsModule } from '@angular/forms';
 
 //components
 
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 //services
 import { ProductService } from './ProductService';
@@ -16,15 +14,16 @@ import { ProductService } from './ProductService';
 
 @NgModule({
   declarations: [
-    ProductViewerComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductFormComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule
   ],
   exports: [
-    ProductViewerComponent
+    
   ],
   providers: [
     ProductService

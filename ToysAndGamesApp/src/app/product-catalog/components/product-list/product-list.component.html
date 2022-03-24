@@ -1,3 +1,4 @@
+<a (click)="addProduct()">Add Product</a>
 <table>
   <thead>
     <tr>
@@ -18,7 +19,7 @@
       <td>{{product.description}}</td>
       <td>{{product.company}}</td>
       <td>{{product.price}}</td>
-      <td></td>
+      <td><a (click)="editProduct(product)">Edit</a><a (click)="removeProduct(product.id!)">Remove</a></td>
     </tr>
   </tbody>
   <tfoot>footer</tfoot>
