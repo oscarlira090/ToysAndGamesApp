@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 //Modules
 import { ProductCatalogModule } from './product-catalog/product-catalog.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { TutorialModule } from './tutorial/tutorial.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -15,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     ProductCatalogModule,
     DashboardModule,
+    TutorialModule
   ],
 
   declarations: [

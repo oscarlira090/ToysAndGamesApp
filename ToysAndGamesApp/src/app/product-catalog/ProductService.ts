@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse,  } from '@angular/common/http';
 
 import { Product } from './models/Product';
 import { Response } from './models/Response';
 
 const TOYSANDGAMES_API: string = 'https://localhost:7271/api/Product';
+const TOYSANDGAMES_IMAGES_API: string = 'https://localhost:7271/api/ProductImage';
+
 let httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
+  headers: new HttpHeaders({ })
 };
 @Injectable()
 export class ProductService {
@@ -21,6 +23,26 @@ export class ProductService {
    
     return this.http
       .get<Product[]>(TOYSANDGAMES_API).pipe(catchError(this.handleError));
+  }
+
+  getProduct(productId:number): Observable<Product> {
+
+    return this.http
+      .get<Product>(`${TOYSANDGAMES_API}/${productId}`).pipe(catchError(this.handleError));
+  }
+
+  getProductImages(productId: number): Observable<string[]> {
+
+    return this.http
+      .get<string[]>(`${TOYSANDGAMES_IMAGES_API}/${productId}`).pipe(catchError(this.handleError));
+  }
+
+  getProductImage(url: string): Observable<Blob> {
+    let httpHeaders = new HttpHeaders()
+      .set('Accept', "image/webp,*/*");
+
+    return this.http
+      .get<Blob>(`${TOYSANDGAMES_IMAGES_API}/display/${url}`, { headers: httpHeaders, responseType: 'blob' as 'json' });
   }
 
   saveProduct(product: Product): Observable<Product> {

@@ -1,27 +1,76 @@
-<form id="form-product" (ngSubmit)="save(form.value, form.valid!)" #form="ngForm" novalidate>
-  <div>
-    Name: <input type="text" name="name" [ngModel]="product?.name" required #name="ngModel" />
-    <div *ngIf="name.errors?.['required'] && name.dirty">
-      name is required
-    </div>
+<div class="card">
+  <div class="card-header">
+    Add Product 
   </div>
-  <div>
-    Description: <input type="text" name="description" [ngModel]="product?.description" />
-  </div>
-  <div>
-    Company: <input type="text" name="company" [ngModel]="product?.company" required />
-  </div>
-  <div>
-    Age Restriction: <input type="number" name="ageRestriction" [ngModel]="product?.ageRestriction" min="1" max="10" />
-  </div>
-  <div>
-    Price: <input type="number" name="price" [ngModel]="product?.price" required />
-  </div>
+  <div class="card-body">
+    <form id="form-product" (ngSubmit)="save(form.value, form.valid!)" #form="ngForm" novalidate>
+      <div>
 
-  <input  type="file"
-  (change)="onChange($event)">
+        <div>
+          <ul style="">
+            <li style="width: 20%; list-style: none; display: inline-block" *ngFor="let img of imagesDisplay"><img [src]="img" class="img-thumbnail" /></li>
+          </ul>
+        </div>
 
-  <button type="submit" [disabled]="form.invalid">
-    Save
-  </button>
-</form>
+        <label for="name" class="form-label">Name</label>
+        <input id="name" type="text" name="name" class="form-control"
+               [class.is-invalid]="name.errors?.['required'] && name.dirty"
+               [ngModel]="product?.name"
+               #name="ngModel" required />
+        <div class="invalid-feedback" *ngIf="name.errors?.['required'] && name.dirty">
+          name is required
+        </div>
+      </div>
+
+      <div>
+        <label for="description" class="form-label">Description</label>
+        <input type="text" name="description" class="form-control" [ngModel]="product?.description" />
+      </div>
+
+      <div>
+        <label for="company" class="form-label">Company</label>
+        <input type="text" id="company" name="company" class="form-control"
+               [class.is-invalid]="company.errors?.['required'] && company.dirty"
+               [ngModel]="product?.company"
+               #company="ngModel" required />
+        <div class="invalid-feedback" *ngIf="company.errors?.['required'] && company.dirty">
+          company is required
+        </div>
+      </div>
+
+      <div>
+        <label for="ageRestriction" class="form-label">Age Restriction</label>
+        <input type="number" id="ageRestriction" name="ageRestriction" class="form-control"
+               [ngModel]="product?.ageRestriction"
+               min="1" max="10" />
+
+      </div>
+
+      <div>
+        <label for="price" class="form-label">Price</label>
+        <input type="number" id="price" name="price" class="form-control" [ngModel]="product?.price"
+               [class.is-invalid]="price.errors?.['required'] && price.dirty"
+               #price="ngModel" min="1" max="1000" required />
+
+        <div class="invalid-feedback" *ngIf="price.errors?.['required'] && price.dirty">
+          price is required
+        </div>
+
+      </div>
+
+      <input type="file"
+             (change)="onChange($event)">
+
+      <div class="mt-3">
+        <button class="btn btn-primary" style="margin-right:5px" type="submit" [disabled]="form.invalid">
+          Save
+        </button>
+        <a class="btn btn-danger" routerLink="/product-list"> Cancel</a>
+      </div>
+
+
+    </form>
+
+  </div>
+</div>
+

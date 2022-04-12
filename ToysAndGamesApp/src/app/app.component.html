@@ -1,8 +1,18 @@
-<div class="app">
-  <h1></h1>
-  <nav>
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/product-list">Products</a>
-  </nav>
+<div class="app container">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#" routerLink="/dashboard">Dash</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" routerLink="/product-list">Product</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" routerLink="/tutorial">Tutorial</a>
+    </li>
+  </ul>
+
   <router-outlet></router-outlet>
+
+
+
 </div>
