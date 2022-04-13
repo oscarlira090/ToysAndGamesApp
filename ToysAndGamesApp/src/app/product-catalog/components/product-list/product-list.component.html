@@ -29,7 +29,7 @@
           <td>{{product.ageRestriction}}</td>
           <td>{{product.description}}</td>
           <td>{{product.company}}</td>
-          <td>{{product.price}}</td>
+          <td>{{product.price | currency }}</td>
           <td>
             <a class="btn btn-primary me-2"
                (click)="editProduct(product)">Edit</a>

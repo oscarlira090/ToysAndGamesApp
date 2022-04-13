@@ -29,8 +29,7 @@ export class ProductFormComponent implements OnInit {
 
         for (let i = 0; i < images.length; i++) {
           this.productService.getProductImage(encodeURIComponent(images[i])).subscribe((image: any) => {
-            let objectURL = URL.createObjectURL(image);
-            this.imagesDisplay.push(this._sanitizer.bypassSecurityTrustUrl(objectURL));
+            this.imagesDisplay.push(this._sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(image)));
           });
         }
 
