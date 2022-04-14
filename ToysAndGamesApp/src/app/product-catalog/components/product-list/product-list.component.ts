@@ -33,6 +33,7 @@ export class ProductListComponent implements OnInit {
   //@Output() add = new EventEmitter<string>();
 
   //products: Product[] = [];
+
   loading: boolean = false;
   saved: boolean = false;
   productToRemove: number = 0;

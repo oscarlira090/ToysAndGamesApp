@@ -25,6 +25,7 @@ import { StoreModule } from '@ngrx/store';
     AppRoutingModule,
     ProductCatalogModule,
     DashboardModule,
+
     TutorialModule
   ],
 
