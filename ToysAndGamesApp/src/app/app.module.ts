@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     ProductCatalogModule,
     DashboardModule,
+
     TutorialModule
   ],
 
