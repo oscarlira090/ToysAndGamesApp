@@ -15,3 +15,4 @@ export const retrievedProductList = createAction(
   '[Product List/API] Retrieve Products Success',
   props<{ products: ReadonlyArray<Product> }>()
 );
+

@@ -9,3 +9,4 @@ export const productsReducer = createReducer(
   initialState,
   on(retrievedProductList, (state, { products }) => products)
 );
+
