@@ -23,22 +23,21 @@
         </tr>
       </thead>
       <tbody>
-        
-  <tr *ngFor="let product of products$ | async">
-    <td>{{product.id}}</td>
-    <td>{{product.name}}</td>
-    <td>{{product.ageRestriction}}</td>
-    <td>{{product.description}}</td>
-    <td>{{product.company}}</td>
-    <td>{{product.price | currency }}</td>
-    <td>
-      <a class="btn btn-primary me-2"
-         (click)="editProduct(product)">Edit</a>
-      <a class="btn btn-danger"
-         data-bs-toggle="modal" data-bs-target="#deleteModal"
-         (click)="productToRemove = product.id!!">Remove</a>
-    </td>
-  </tr>
+        <tr *ngFor="let product of products">
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.ageRestriction}}</td>
+          <td>{{product.description}}</td>
+          <td>{{product.company}}</td>
+          <td>{{product.price | currency }}</td>
+          <td>
+            <a class="btn btn-primary me-2"
+               (click)="editProduct(product)">Edit</a>
+            <a class="btn btn-danger"
+               data-bs-toggle="modal" data-bs-target="#deleteModal"
+               (click)="productToRemove = product.id!!">Remove</a>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

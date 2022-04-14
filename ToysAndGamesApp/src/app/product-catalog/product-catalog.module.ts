@@ -16,8 +16,7 @@ import { ProductService } from './ProductService';
 @NgModule({
   declarations: [
     ProductListComponent,
-    ProductFormComponent,
-    
+    ProductFormComponent
   ],
   imports: [
     CommonModule,
