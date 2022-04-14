@@ -19,10 +19,10 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
+  getProducts(): Observable<Array<Product>> {
    
     return this.http
-      .get<Product[]>(TOYSANDGAMES_API).pipe(catchError(this.handleError));
+      .get<Array<Product>>(TOYSANDGAMES_API).pipe(catchError(this.handleError));
   }
 
   getProduct(productId:number): Observable<Product> {

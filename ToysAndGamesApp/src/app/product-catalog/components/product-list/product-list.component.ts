@@ -1,9 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/Product';
 import { Response } from '../../models/Response';
 import { ProductService } from '../../ProductService';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+
+//state
+
+import {  selectProduct } from '../../../state/products.selectors';
+
+import {
+  retrievedProductList,
+  addProduct,
+  removeProduct,
+} from '../../../state/products.actions';
 
 @Component({
   selector: 'product-list',
@@ -13,12 +24,20 @@ import { Observable, of } from 'rxjs';
 
 
 export class ProductListComponent implements OnInit {
-  products: Product[] = [];
+
+  //state
+
+  products$ = this.store.select(selectProduct);
+
+  //@Input() products: ReadonlyArray<Product> = [];
+  //@Output() add = new EventEmitter<string>();
+
+  //products: Product[] = [];
   loading: boolean = false;
   saved: boolean = false;
   productToRemove: number = 0;
 
-  constructor(private router: Router, private actDataRoute: ActivatedRoute, private productService: ProductService) { }
+  constructor(private store: Store, private router: Router, private actDataRoute: ActivatedRoute, private productService: ProductService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -30,9 +49,10 @@ export class ProductListComponent implements OnInit {
 
   getProducts(): void {
     this.loading = true;
-    this.actDataRoute.data.subscribe((data: any) => {
+    this.actDataRoute.data.subscribe((data: any ) => {
       setTimeout(() => {
-        this.products = data.products;
+        console.log(data)
+        this.store.dispatch(retrievedProductList( data ));
         this.loading = false;
       }, 500)
      

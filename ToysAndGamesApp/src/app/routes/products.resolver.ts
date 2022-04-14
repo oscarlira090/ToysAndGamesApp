@@ -7,13 +7,13 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsResolver implements Resolve<Product[]> {
+export class ProductsResolver implements Resolve<Array<Product>> {
 
   constructor(private productService: ProductService) {
 
   }
 
-  resolve(): Observable<Product[]> {
+  resolve(): Observable<Array<Product>> {
     return this.productService.getProducts();
   }
 
