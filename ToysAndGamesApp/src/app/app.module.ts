@@ -12,6 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { productsReducer } from './state/products.reducer';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { ProductEffects } from './effects/products.effects';
 
 @NgModule({
   imports: [
@@ -20,7 +23,8 @@ import { StoreModule } from '@ngrx/store';
     ProductCatalogModule,
     DashboardModule,
     StoreModule.forRoot({ products: productsReducer }),
-    TutorialModule
+    TutorialModule,
+    EffectsModule.forRoot([ProductEffects])
   ],
 
   declarations: [

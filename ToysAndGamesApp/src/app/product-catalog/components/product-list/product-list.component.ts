@@ -10,12 +10,6 @@ import { Store } from '@ngrx/store';
 
 import {  selectProduct } from '../../../state/products.selectors';
 
-import {
-  retrievedProductList,
-  addProduct,
-  removeProduct,
-} from '../../../state/products.actions';
-
 @Component({
   selector: 'product-list',
   templateUrl: './/product-list.component.html',
@@ -26,13 +20,7 @@ import {
 export class ProductListComponent implements OnInit {
 
   //state
-
   products$ = this.store.select(selectProduct);
-
-  //@Input() products: ReadonlyArray<Product> = [];
-  //@Output() add = new EventEmitter<string>();
-
-  //products: Product[] = [];
 
   loading: boolean = false;
   saved: boolean = false;
@@ -50,14 +38,16 @@ export class ProductListComponent implements OnInit {
 
   getProducts(): void {
     this.loading = true;
+    //this.store.dispatch(retrievedProductList());
+    /*
     this.actDataRoute.data.subscribe((data: any ) => {
       setTimeout(() => {
         console.log(data)
-        this.store.dispatch(retrievedProductList( data ));
+        this.store.dispatch(retrievedProductList(  ));
         this.loading = false;
       }, 500)
      
-    });
+    });*/
   }
 
   addProduct() {

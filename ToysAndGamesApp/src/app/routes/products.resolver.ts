@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { ProductService } from '../product-catalog/ProductService';
-import { Product } from '../product-catalog/models/Product';
 import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import {
+  retrievedProductList
+} from '../state/products.actions';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsResolver implements Resolve<Product[]> {
+export class ProductsResolver implements Resolve<void> {
 
-  constructor(private productService: ProductService) {
+  constructor(private store: Store) {
 
   }
 
-  resolve(): Observable<Product[]> {
-    return this.productService.getProducts();
+  resolve(): void {
+    this.store.dispatch(retrievedProductList());
   }
 
 }
