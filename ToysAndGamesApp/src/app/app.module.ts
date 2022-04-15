@@ -10,13 +10,16 @@ import { TutorialModule } from './tutorial/tutorial.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { productsReducer } from './state/products.reducer';
+import { StoreModule } from '@ngrx/store';
+
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     ProductCatalogModule,
     DashboardModule,
-
+    StoreModule.forRoot({ products: productsReducer }),
     TutorialModule
   ],
 
