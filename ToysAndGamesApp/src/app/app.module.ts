@@ -22,7 +22,7 @@ import { ProductEffects } from './effects/products.effects';
     AppRoutingModule,
     ProductCatalogModule,
     DashboardModule,
-    StoreModule.forRoot({ products: productsReducer }),
+    StoreModule.forRoot({ data: productsReducer }),
     TutorialModule,
     EffectsModule.forRoot([ProductEffects])
   ],

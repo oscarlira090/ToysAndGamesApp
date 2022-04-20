@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, delay } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse,  } from '@angular/common/http';
 
 import { Product } from './models/Product';
@@ -22,7 +22,7 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
    
     return this.http
-      .get<Product[]>(TOYSANDGAMES_API).pipe(catchError(this.handleError));
+      .get<Product[]>(TOYSANDGAMES_API).pipe(delay(1000),catchError(this.handleError));
   }
 
   getProduct(productId:number): Observable<Product> {

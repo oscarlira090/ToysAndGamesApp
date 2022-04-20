@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import {
-  retrievedProductList
+  loadProducts
 } from '../state/products.actions';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class ProductsResolver implements Resolve<void> {
   }
 
   resolve(): void {
-    this.store.dispatch(retrievedProductList());
+    this.store.dispatch(loadProducts());
   }
 
 }

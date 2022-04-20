@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 
 //state
 
-import {  selectProduct } from '../../../state/products.selectors';
+import {  selectLoading, selectProduct } from '../../../state/products.selectors';
 
 @Component({
   selector: 'product-list',
@@ -21,6 +21,7 @@ export class ProductListComponent implements OnInit {
 
   //state
   products$ = this.store.select(selectProduct);
+  loading$ = this.store.select(selectLoading);
 
   loading: boolean = false;
   saved: boolean = false;
@@ -37,7 +38,8 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts(): void {
-    this.loading = true;
+    //this.loading = true;
+    //console.log(this.products$.entities)
     //this.store.dispatch(retrievedProductList());
     /*
     this.actDataRoute.data.subscribe((data: any ) => {
