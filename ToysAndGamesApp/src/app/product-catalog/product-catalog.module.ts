@@ -12,6 +12,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 //services
 import { ProductService } from './ProductService';
 
+//router
+import { ProductRoutingModule } from './product-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { ProductService } from './ProductService';
   imports: [
     CommonModule,
     RouterModule,
+    ProductRoutingModule,
     HttpClientModule,
     FormsModule
   ],

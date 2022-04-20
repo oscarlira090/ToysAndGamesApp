@@ -7,7 +7,6 @@ import { AppState } from './app.state';
 //export const initialState: ReadonlyArray<Product> = [];
 
 export const initialState: AppState = {
-  products:[],
   entities: {},
   loaded: false,
   loading: false,

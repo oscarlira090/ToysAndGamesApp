@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ProductCatalogModule } from './product-catalog/product-catalog.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { TutorialModule } from './tutorial/tutorial.module';
+import { LoginModule } from './login/login.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,6 +23,7 @@ import { ProductEffects } from './effects/products.effects';
     AppRoutingModule,
     ProductCatalogModule,
     DashboardModule,
+    LoginModule,
     StoreModule.forRoot({ data: productsReducer }),
     TutorialModule,
     EffectsModule.forRoot([ProductEffects])
