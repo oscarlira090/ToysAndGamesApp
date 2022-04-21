@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.user = this.fb.group({
-      email:    ['', Validators.required],
+      name:    ['', Validators.required],
       password: ['', Validators.required],
     });
 
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   logIn() {
 
-    this.auth.login(this.user?.get('email')?.value, this.user?.get('password')?.value)
+    this.auth.login(this.user?.get('name')?.value, this.user?.get('password')?.value)
       .subscribe(data => {
         console.log("Is Login Success: " + data);
 

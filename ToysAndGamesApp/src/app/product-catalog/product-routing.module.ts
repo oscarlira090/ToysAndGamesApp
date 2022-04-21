@@ -14,8 +14,8 @@ const routes: Routes = [
     children: [
       { path: 'product-add', component: ProductFormComponent },
       { path: 'product-add/:productId', component: ProductFormComponent },
-      { path: 'product-list', component: ProductListComponent, resolve: { products: ProductsResolver }, canLoad: [AuthGuardService] },
-      { path: '**', redirectTo:'products' }
+      { path: 'product-list', component: ProductListComponent, resolve: { products: ProductsResolver }},
+      { path: '**', redirectTo:'product-list' }
     ]
   },
   

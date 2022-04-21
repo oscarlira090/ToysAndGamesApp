@@ -11,6 +11,7 @@ export class AuthGuardService implements CanLoad {
 
   canLoad(route: Route): boolean {
 
+    
     let val: string = localStorage.getItem('isUserLoggedIn')!!;
     let url: string = route.path!!;
     console.log('Url:' + url);
