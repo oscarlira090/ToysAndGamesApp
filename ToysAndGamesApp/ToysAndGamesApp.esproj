@@ -11,6 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\app\effects\" />
+    <Folder Include="src\app\login\models\" />
     <Folder Include="src\app\routes\" />
   </ItemGroup>
   <!-- This target is copied from the ASP.NET SPA template in order to ensure node_modules are in place. -->

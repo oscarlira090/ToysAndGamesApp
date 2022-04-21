@@ -1,3 +1,41 @@
 <div class="container">
-  <h5>Login</h5>
+  <div class="card">
+    <div class="card-header">
+      Login
+    </div>
+    <div class="card-body">
+
+      <form novalidate [formGroup]="user!!" (ngSubmit)="logIn()">
+        <div>
+          <label for="email" class="form-label">Email</label>
+          <input type="text" name="email" class="form-control"
+                 formControlName="email" />
+
+
+          <div class="text-danger" *ngIf="user?.get('email')?.hasError('required') && user?.get('email')?.touched">
+            name is required
+          </div>
+        </div>
+        
+        <div>
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control"
+                 formControlName="password" />
+
+          <div class="text-danger" *ngIf="user?.get('password')?.hasError('required') && user?.get('password')?.touched">
+            password is required
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <button class="btn btn-primary" style="margin-right:5px" type="submit"
+                  [disabled]="user?.invalid">
+            Log in
+          </button>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
 </div>

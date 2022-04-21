@@ -5,7 +5,7 @@ import { ProductService } from '../../ProductService';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-
+import { AuthService } from '../../../login/AuthService';
 //state
 
 import {  selectLoading, selectProduct } from '../../../state/products.selectors';
@@ -27,7 +27,7 @@ export class ProductListComponent implements OnInit {
   saved: boolean = false;
   productToRemove: number = 0;
 
-  constructor(private store: Store, private router: Router, private actDataRoute: ActivatedRoute, private productService: ProductService) { }
+  constructor(private store: Store, private router: Router, private actDataRoute: ActivatedRoute, private productService: ProductService, private auth: AuthService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -69,6 +69,12 @@ export class ProductListComponent implements OnInit {
     this.productService.removeProduct(this.productToRemove).subscribe((msg: Response) => {
       this.router.navigate(['/product-list', { removed: true }],);
     });
+  }
+
+  logOut() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+    console.log('logout')
   }
 
 }

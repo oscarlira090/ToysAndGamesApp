@@ -6,6 +6,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductFormComponent } from './components/product-form/product-form.component';
 
 import { ProductsResolver } from '../routes/products.resolver';
+import { AuthGuardService } from './AuthGuardService';
 
 const routes: Routes = [
   {
@@ -13,8 +14,8 @@ const routes: Routes = [
     children: [
       { path: 'product-add', component: ProductFormComponent },
       { path: 'product-add/:productId', component: ProductFormComponent },
-      { path: 'product-list', component: ProductListComponent, resolve: { products: ProductsResolver } },
-      { path: '**', redirectTo:'product-list' }
+      { path: 'product-list', component: ProductListComponent, resolve: { products: ProductsResolver }, canLoad: [AuthGuardService] },
+      { path: '**', redirectTo:'products' }
     ]
   },
   

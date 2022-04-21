@@ -16,16 +16,17 @@ import { AuthGuardService } from './product-catalog/AuthGuardService';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  //{ path: 'dashboard', component: DashboardComponent },
   //lazy loading
   {
     path: 'products',
     loadChildren: () => import('./product-catalog/product-catalog.module').then(m => m.ProductCatalogModule), canLoad: [AuthGuardService]
   },
+  { path: '**', redirectTo: 'login' }
   //Test purposes
- { path: 'tutorial', component: TutorialComponent }
+ //{ path: 'tutorial', component: TutorialComponent }
 ];
 
 @NgModule({

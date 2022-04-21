@@ -11,16 +11,19 @@ export class AuthGuardService implements CanLoad {
 
   canLoad(route: Route): boolean {
 
-    /*
+    let val: string = localStorage.getItem('isUserLoggedIn')!!;
     let url: string = route.path!!;
     console.log('Url:' + url);
-    if (url == 'products') {
+
+    console.log(val)
+    if ((url == 'products' || url == 'product-list') && val != "true") {
       alert('You are not authorised to visit this page');
       return false;
     }
-    */
-    return true; 
+    
+
+    return true;
   }
-  
+
 }
 

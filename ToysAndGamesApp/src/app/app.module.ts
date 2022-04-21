@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
+
 import { AppComponent } from './app.component';
 
 //Modules
@@ -20,6 +24,7 @@ import { ProductEffects } from './effects/products.effects';
 @NgModule({
   imports: [
     BrowserModule,
+
     AppRoutingModule,
     ProductCatalogModule,
     DashboardModule,
