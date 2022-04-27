@@ -1,14 +1,25 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
-export class AuthGuardService implements CanLoad {
+export class AuthGuardService implements CanActivate{
 
   constructor(private router: Router) {
 
   }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+      let val: string = localStorage.getItem('isUserLoggedIn')!!;
+      if (val != "true") {
+        alert('You are not authorised to visit this page');
+        this.router.navigate(["login"], { queryParams: { retUrl: route.url } });
+        return false;
+      }
+      return true;
+    }
 
+  /*
   canLoad(route: Route): boolean {
 
     
@@ -24,7 +35,7 @@ export class AuthGuardService implements CanLoad {
     
 
     return true;
-  }
+  }*/
 
 }
 

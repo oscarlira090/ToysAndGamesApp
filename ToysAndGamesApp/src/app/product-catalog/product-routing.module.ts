@@ -10,11 +10,11 @@ import { AuthGuardService } from './AuthGuardService';
 
 const routes: Routes = [
   {
-    path: '',
+    path: '', canActivate: [AuthGuardService],
     children: [
-      { path: 'product-add', component: ProductFormComponent },
-      { path: 'product-add/:productId', component: ProductFormComponent },
-      { path: 'product-list', component: ProductListComponent, resolve: { products: ProductsResolver }},
+      { path: 'product-add', component: ProductFormComponent, },
+      { path: 'product-add/:productId', component: ProductFormComponent,  },
+      { path: 'product-list', component: ProductListComponent, resolve: { products: ProductsResolver },},
       { path: '**', redirectTo:'product-list' }
     ]
   },

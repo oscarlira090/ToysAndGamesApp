@@ -5,14 +5,16 @@
     </div>
     <div class="card-body">
 
-      <form novalidate [formGroup]="user!!" (ngSubmit)="logIn()">
+      <form novalidate [formGroup]="userForm!!" (ngSubmit)="logIn()">
         <div>
+
+
           <label for="name" class="form-label">Name</label>
           <input type="text" name="name" class="form-control"
                  formControlName="name" />
-
-
-          <div class="text-danger" *ngIf="user?.get('name')?.hasError('required') && user?.get('name')?.touched">
+          <strong>Name:</strong> admin<br />
+          
+          <div class="text-danger" *ngIf="userForm?.get('name')?.hasError('required') && userForm?.get('name')?.touched">
             name is required
           </div>
         </div>
@@ -21,15 +23,15 @@
           <label for="password" class="form-label">Password</label>
           <input type="password" name="password" class="form-control"
                  formControlName="password" />
-
-          <div class="text-danger" *ngIf="user?.get('password')?.hasError('required') && user?.get('password')?.touched">
+          <strong>Password:</strong> admin<br />
+          <div class="text-danger" *ngIf="userForm?.get('password')?.hasError('required') && userForm?.get('password')?.touched">
             password is required
           </div>
         </div>
 
         <div class="mt-3">
-          <button class="btn btn-primary" style="margin-right:5px" type="submit"
-                  [disabled]="user?.invalid">
+          <button class="btn btn-primary" id="btn-login" style="margin-right:5px" type="submit"
+                  [disabled]="userForm?.invalid">
             Log in
           </button>
 

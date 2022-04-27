@@ -1,36 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-
 import { AppComponent } from './app.component';
+
+//Routes
+import { AppRoutingModule } from './app-routing.module';
+
 
 //Modules
 import { ProductCatalogModule } from './product-catalog/product-catalog.module';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { TutorialModule } from './tutorial/tutorial.module';
 import { LoginModule } from './login/login.module';
 
-import { AppRoutingModule } from './app-routing.module';
-
-import { productsReducer } from './state/products.reducer';
+//Store Management
 import { StoreModule } from '@ngrx/store';
+import { productsReducer } from './state/products.reducer';
 import { EffectsModule } from '@ngrx/effects';
-
-import { ProductEffects } from './effects/products.effects';
+import { ProductEffects } from './state/products.effects';
 
 @NgModule({
   imports: [
     BrowserModule,
-
     AppRoutingModule,
     ProductCatalogModule,
-    DashboardModule,
     LoginModule,
     StoreModule.forRoot({ data: productsReducer }),
-    TutorialModule,
     EffectsModule.forRoot([ProductEffects])
   ],
 
